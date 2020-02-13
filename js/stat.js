@@ -30,6 +30,8 @@ var TEXT_GAP = 20;
 var COLUMN_HEIGHT = 150;
 var COLUMN_WIDTH = 40;
 var YOU_COLUMN_COLOR = 'rgba(255, 0, 0, 1)';
+var MIN_SATURATION = 0;
+var MAX_SATURATION = 100;
 
 var FONT_COLOR = '#000';
 
@@ -61,7 +63,7 @@ var getMaxElement = function (arr) {
   return maxElement;
 };
 
-var getRandomNumber = function (min, max) {
+var getRandomSaturation = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
@@ -69,7 +71,7 @@ var getColor = function (playerName) {
   if (playerName === 'Вы') {
     var columnColor = YOU_COLUMN_COLOR;
   } else {
-    columnColor = 'hsl(240, ' + getRandomNumber(0, 100) + '%,' + ' 50%)';
+    columnColor = 'hsl(240, ' + getRandomSaturation(MIN_SATURATION, MAX_SATURATION) + '%,' + ' 50%)';
   }
   return columnColor;
 };
