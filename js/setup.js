@@ -28,7 +28,7 @@ var openPopup = function () {
 var closePopup = function () {
   userDialog.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress);
-}
+};
 
 userDialogOpen.addEventListener('click', function () {
   openPopup();
@@ -54,7 +54,7 @@ userNameInput.addEventListener('keydown', function (evt) {
   evt.stopPropagation();
 });
 
-userNameInput.addEventListener('invalid', function (evt) {
+userNameInput.addEventListener('invalid', function () {
   if (userNameInput.validity.tooShort) {
     userNameInput.setCustomValidity('Имя персонажа не может содержать менее 2-x символов');
   } else if (userNameInput.validity.tooLong) {
@@ -78,18 +78,18 @@ var userFireballColor = userDialog.querySelector('.setup-fireball-wrap');
 var changesCoatColor = function (arr) {
   userCoatInput.value = getRandomNumber(arr);
   userCoatColor.style.fill = userCoatInput.value;
-}
+};
 
 var changesEyesColor = function (arr) {
   userEyesInput.value = getRandomNumber(arr);
   userEyesColor.setAttribute('style', 'fill');
   userEyesColor.style.fill = userEyesInput.value;
-}
+};
 
 var changesFireballColor = function (arr) {
   userFireballInput.value = getRandomNumber(arr);
   userFireballColor.style.background = userFireballInput.value;
-}
+};
 
 userCoatColor.addEventListener('click', function () {
   changesCoatColor(WIZARD_MANTLE_COLORS);
