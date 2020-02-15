@@ -4,6 +4,7 @@ var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'К
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var WIZARD_MANTLE_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var WIZARD_EYES = ['black', 'red', 'blue', 'yellow', 'green'];
+var WIZARD_FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 
 var userDialog = document.querySelector('.setup');
 var userDialogOpen = document.querySelector('.setup-open');
@@ -53,7 +54,6 @@ userNameInput.addEventListener('keydown', function (evt) {
   evt.stopPropagation();
 });
 
-var userNameInput = document.querySelector('.setup-user-name');
 userNameInput.addEventListener('invalid', function (evt) {
   if (userNameInput.validity.tooShort) {
     userNameInput.setCustomValidity('Имя персонажа не может содержать менее 2-x символов');
@@ -64,6 +64,43 @@ userNameInput.addEventListener('invalid', function (evt) {
   } else {
     userNameInput.setCustomValidity('');
   }
+});
+
+var userCoatInput = userDialog.querySelector('input[name="coat-color"]');
+var userCoatColor = userDialog.querySelector('.wizard-coat');
+
+var userEyesInput = userDialog.querySelector('input[name="eyes-color"]');
+var userEyesColor = userDialog.querySelector('.wizard-eyes');
+
+var userFireballInput = userDialog.querySelector('input[name="fireball-color"]');
+var userFireballColor = userDialog.querySelector('.setup-fireball-wrap');
+
+var changesCoatColor = function (arr) {
+  userCoatInput.value = getRandomNumber(arr);
+  userCoatColor.style.fill = userCoatInput.value;
+}
+
+var changesEyesColor = function (arr) {
+  userEyesInput.value = getRandomNumber(arr);
+  userEyesColor.setAttribute('style', 'fill');
+  userEyesColor.style.fill = userEyesInput.value;
+}
+
+var changesFireballColor = function (arr) {
+  userFireballInput.value = getRandomNumber(arr);
+  userFireballColor.style.background = userFireballInput.value;
+}
+
+userCoatColor.addEventListener('click', function () {
+  changesCoatColor(WIZARD_MANTLE_COLORS);
+});
+
+userEyesColor.addEventListener('click', function () {
+  changesEyesColor(WIZARD_EYES);
+});
+
+userFireballColor.addEventListener('click', function () {
+  changesFireballColor(WIZARD_FIREBALL_COLORS);
 });
 
 var similarListElement = userDialog.querySelector('.setup-similar-list');
