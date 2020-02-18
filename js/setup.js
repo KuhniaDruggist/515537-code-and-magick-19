@@ -17,10 +17,7 @@ var Buttons = {
 };
 
 var onPopupEscPress = function (evt) {
-  if (evt.key === Buttons.ESC_KEY) {
-    if (userNameInput === document.activeElement) {
-      return;
-    }
+  if (evt.key === Buttons.ESC_KEY && userNameInput !== document.activeElement) {
     closePopup();
   }
 };
