@@ -11,11 +11,16 @@ var userDialogOpen = document.querySelector('.setup-open');
 var userDialogClose = userDialog.querySelector('.setup-close');
 var userNameInput = userDialog.querySelector('.setup-user-name');
 
-var ESC_KEY = 'Escape';
-var ENTER_KEY = 'Enter';
+var Buttons = {
+  ESC_KEY: 'Escape',
+  ENTER_KEY: 'Enter'
+};
 
 var onPopupEscPress = function (evt) {
-  if (evt.key === ESC_KEY) {
+  if (evt.key === Buttons.ESC_KEY) {
+    if (userNameInput === document.activeElement) {
+      return;
+    }
     closePopup();
   }
 };
@@ -35,7 +40,7 @@ userDialogOpen.addEventListener('click', function () {
 });
 
 userDialogOpen.addEventListener('keydown', function (evt) {
-  if (evt.key === ENTER_KEY) {
+  if (evt.key === Buttons.ENTER_KEY) {
     openPopup();
   }
 });
@@ -45,13 +50,9 @@ userDialogClose.addEventListener('click', function () {
 });
 
 userDialogClose.addEventListener('keydown', function (evt) {
-  if (evt.key === ENTER_KEY) {
+  if (evt.key === Buttons.ENTER_KEY) {
     closePopup();
   }
-});
-
-userNameInput.addEventListener('keydown', function (evt) {
-  evt.stopPropagation();
 });
 
 userNameInput.addEventListener('invalid', function () {
@@ -76,18 +77,18 @@ var userFireballInput = userDialog.querySelector('input[name="fireball-color"]')
 var userFireballColor = userDialog.querySelector('.setup-fireball-wrap');
 
 var changesCoatColor = function (arr) {
-  userCoatInput.value = getRandomNumber(arr);
+  userCoatInput.value = getRandomElementFromArray(arr);
   userCoatColor.style.fill = userCoatInput.value;
 };
 
 var changesEyesColor = function (arr) {
-  userEyesInput.value = getRandomNumber(arr);
+  userEyesInput.value = getRandomElementFromArray(arr);
   userEyesColor.setAttribute('style', 'fill');
   userEyesColor.style.fill = userEyesInput.value;
 };
 
 var changesFireballColor = function (arr) {
-  userFireballInput.value = getRandomNumber(arr);
+  userFireballInput.value = getRandomElementFromArray(arr);
   userFireballColor.style.background = userFireballInput.value;
 };
 
@@ -109,7 +110,7 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
   .content
   .querySelector('.setup-similar-item');
 
-var getRandomNumber = function (arr) {
+var getRandomElementFromArray = function (arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 };
 
@@ -117,9 +118,9 @@ var createWizards = function () {
   var wizardArray = [];
   for (var i = 0; i < 4; i++) {
     var wizard = {
-      name: getRandomNumber(WIZARD_NAMES) + ' ' + getRandomNumber(WIZARD_SURNAMES),
-      coatColor: getRandomNumber(WIZARD_MANTLE_COLORS),
-      eyesColor: getRandomNumber(WIZARD_EYES),
+      name: getRandomElementFromArray(WIZARD_NAMES) + ' ' + getRandomElementFromArray(WIZARD_SURNAMES),
+      coatColor: getRandomElementFromArray(WIZARD_MANTLE_COLORS),
+      eyesColor: getRandomElementFromArray(WIZARD_EYES),
     };
     wizardArray.push(wizard);
   }
