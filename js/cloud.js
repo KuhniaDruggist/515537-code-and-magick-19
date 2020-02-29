@@ -20,7 +20,7 @@
   var EIGHT_POINT_X = 20;
   var EIGHT_POINT_Y = 135;
 
-  window.cloud = function (ctx, x, y, color) {
+  var renderCloud = function (ctx, x, y, color) {
     ctx.fillStyle = color;
     ctx.beginPath();
     ctx.moveTo(x, y);
@@ -34,6 +34,10 @@
     ctx.lineTo(x, y);
     ctx.closePath();
     ctx.fill();
+  };
+
+  window.cloud = {
+    render: renderCloud
   };
 
 })();

@@ -21,8 +21,8 @@
   var FONT_COLOR = '#000';
 
   window.renderStatistics = function (ctx, players, times) {
-    window.cloud(ctx, CLOUD_X + SHADOW_INDENT, CLOUD_Y + SHADOW_INDENT, SHADOW_COLOR);
-    window.cloud(ctx, CLOUD_X, CLOUD_Y, CLOUD_COLOR);
+    window.cloud.render(ctx, CLOUD_X + SHADOW_INDENT, CLOUD_Y + SHADOW_INDENT, SHADOW_COLOR);
+    window.cloud.render(ctx, CLOUD_X, CLOUD_Y, CLOUD_COLOR);
 
     ctx.fillStyle = FONT_COLOR;
     ctx.font = '16px PT Mono';
