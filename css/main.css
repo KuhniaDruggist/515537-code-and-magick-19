@@ -1019,3 +1019,18 @@ input[type=radio]:checked + .review-mark-label
 
     opacity: 0;
 }
+
+.error
+{
+    position: absolute;
+    z-index: 100;
+    top: 30%;
+    left: calc(50% - 200px);
+
+    width: 400px;
+    background-color: black;
+
+    font-size: 30px;
+    text-align: center;
+    color: orange;
+}
