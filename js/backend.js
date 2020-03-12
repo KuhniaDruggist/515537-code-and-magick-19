@@ -1,23 +1,26 @@
 'use strict';
 (function () {
 
-  var URL_POST = 'https://js.dump.academy/code-and-magick';
-  var URL_GET = 'https://js.dump.academy/code-and-magick/data';
+  var ServerLinks = {
+    URL_POST: 'https://js.dump.academy/code-and-magick',
+    URL_GET: 'https://js.dump.academy/code-and-magick/data'
+  };
 
-  var StatusCode = {
+  var StatusCodes = {
     OK: 200
   };
 
   var TIMEOUT_IN_MS = 10000;
+  var RESPONSE_TYPE = 'json';
 
   var save = function (data, onLoad, onError) {
     var xhr = new XMLHttpRequest();
-    xhr.responseType = 'json';
+    xhr.responseType = RESPONSE_TYPE;
 
-    xhr.open('POST', URL_POST);
+    xhr.open('POST', ServerLinks.URL_POST);
 
     xhr.addEventListener('load', function () {
-      if (xhr.status === StatusCode.OK) {
+      if (xhr.status === StatusCodes.OK) {
         onLoad(xhr.response);
       } else {
         onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
@@ -39,12 +42,12 @@
 
   var load = function (onLoad, onError) {
     var xhr = new XMLHttpRequest();
-    xhr.responseType = 'json';
+    xhr.responseType = RESPONSE_TYPE;
 
-    xhr.open('GET', URL_GET);
+    xhr.open('GET', ServerLinks.URL_GET);
 
     xhr.addEventListener('load', function () {
-      if (xhr.status === StatusCode.OK) {
+      if (xhr.status === StatusCodes.OK) {
         onLoad(xhr.response);
       } else {
         onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
@@ -65,8 +68,8 @@
   };
 
   window.backend = {
-    getSave: save,
-    getLoad: load
+    sentData: save,
+    getData: load
   };
 
 })();

@@ -8,6 +8,8 @@
   .content
   .querySelector('.setup-similar-item');
 
+  var MAX_NUMBER_OF_WIZARDS = 4;
+
   var renderWizard = function (wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
 
@@ -20,7 +22,7 @@
 
   var onLoad = function (wizards) {
     var fragment = document.createDocumentFragment();
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < MAX_NUMBER_OF_WIZARDS; i++) {
       fragment.appendChild(renderWizard(wizards[i]));
     }
 
@@ -29,6 +31,6 @@
     userDialog.querySelector('.setup-similar').classList.remove('hidden');
   };
 
-  window.backend.getLoad(onLoad, window.utils.onError);
+  window.backend.getData(onLoad, window.utils.onError);
 
 })();

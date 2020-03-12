@@ -39,10 +39,13 @@
   });
 
   var form = userDialog.querySelector('.setup-wizard-form');
+
+  var onWizardParamSaved = function () {
+    userDialog.classList.add('hidden');
+  };
+
   form.addEventListener('submit', function (evt) {
-    window.backend.getSave(new FormData(form), function () {
-      userDialog.classList.add('hidden');
-    }, window.utils.onError);
+    window.backend.sentData(new FormData(form), onWizardParamSaved, window.utils.onError);
     evt.preventDefault();
   });
 
